@@ -2,8 +2,9 @@ namespace IngridDemo3
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
-
+        FirebaseHelper firebaseHelper = new FirebaseHelper();
+        //int count = 0;
+        //string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "BMIRecord.txt");
         public MainPage()
         {
             InitializeComponent();
@@ -59,6 +60,27 @@ namespace IngridDemo3
             outputBmiStatus.TextColor = Colors.Black;
 
         }
+        void onDatePickerSelected(object sender, DateChangedEventArgs e)
+        {
+            var selectedDate = e.NewDate.ToString();
+        }
+        async void OnSaveRecord(object sender, EventArgs e)
+        {
+            /*var writerRecord = ((System.DateTime)selectDate.Date).ToString("dd/MM/yyyy") +
+
+            "\nWeight: " + inputWeight.Text + "kg" +
+            "\nBMI Value: " + outputResult.Text +
+            "\nBMI Status: " + outputBmiStatus.Text +
+            "\n";
+            File.AppendAllText(fileName, writerRecord + Environment.NewLine);*/
+            var selectdate = ((System.DateTime)selectDate.Date).ToString("dd/MM/yyyy");
+            var weight = Double.Parse(inputWeight.Text);
+            var bmiresult = Double.Parse(outputResult.Text);
+            string bmistatus = outputBmiStatus.Text;
+            await firebaseHelper.AddRecord(selectdate, weight, bmiresult, bmistatus);
+            await DisplayAlert("Record Saved", "BMI Record has been saved", "OK");
+        }
+
 
     }
 }
