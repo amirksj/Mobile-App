@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="IngridDemo3.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:IngridDemo3"
+    Shell.FlyoutBehavior="Flyout"
+    Shell.BackgroundColor="Blue"
+    Shell.TitleColor="White"
+    
+    Title="IngridDemo3">
+    <Shell.FlyoutHeader>
+        <VerticalStackLayout>
+            <Label Text="MENU" HeightRequest="50" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"></Label>
+        </VerticalStackLayout>
+    </Shell.FlyoutHeader>
+    <ShellContent
+        Title="Ingrid"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+    <ShellContent
+        Title="Record"
+        ContentTemplate="{DataTemplate local:Record}"
+        Route="Record" />
+    <ShellContent
+        Title="Information"
+        ContentTemplate="{DataTemplate local:Information}"
+        Route="Information" />
+
+</Shell>
